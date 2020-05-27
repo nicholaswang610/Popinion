@@ -1,8 +1,11 @@
 require('dotenv').config({path: __dirname + '../../../../.env'});
 const express = require('express');
 const mysql = require('mysql');
+const path = require('path');
+const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 8080;
+app.use(cors());
+const PORT = process.env.PORT || 5000;
 
 //database
 const database = mysql.createConnection({
@@ -12,15 +15,11 @@ const database = mysql.createConnection({
     database:process.env.DATABASE
 });
 
-database.connect();
-
-//app routing
-
-app.get('/', (req,res)=>{
-    database.query('SELECT first_name FROM users WHERE id=1', (err,results) =>{
-        console.log(results);
-    });
-
+app.get('/add', (req,res)=>{
+    const firstName=req.query;
+    res.send(firstName);
 });
+
+database.connect();
 
 app.listen(PORT, () => {console.log('server started on port ' + PORT)});
