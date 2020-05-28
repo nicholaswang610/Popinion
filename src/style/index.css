@@ -1,0 +1,23 @@
+.navbar{
+    background: rgba(255,255,255,0);
+}
+
+.login-buttons.signed-in{
+    margin-right: 18%;
+    font-weight:bold;
+}
+
+.login-buttons.signed-out{
+    margin-right: 15%;
+    font-weight:bold;
+}
+
+.banner{
+    height:600px;
+    background-position: 0em -6em;
+    background-image: url('./breakfast.jpg');
+}
+
+.nav-link:hover, .nav-link.active{
+    color: #545354 !important;
+}

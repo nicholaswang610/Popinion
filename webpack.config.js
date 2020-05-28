@@ -8,7 +8,8 @@ module.exports = {
     },
     devServer: {
         contentBase: path.resolve(__dirname, "dist"),
-        publicPath: "/"
+        publicPath: "/",
+        historyApiFallback:true
     },
     module: {
         rules: [
@@ -22,6 +23,10 @@ module.exports = {
             {
                 test:/\.css$/,
                 use: ['style-loader', 'css-loader']
+            },
+            {
+                test:/\.(png|jpg)$/,
+                use: 'url-loader'
             }
             
         ]

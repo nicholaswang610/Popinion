@@ -20,6 +20,11 @@ app.get('/add', (req,res)=>{
     res.send(firstName);
 });
 
-database.connect();
+database.connect(err=>{
+    if(err){
+        console.log('error connecting ' + err.stack);
+        return;
+    }
+});
 
 app.listen(PORT, () => {console.log('server started on port ' + PORT)});
