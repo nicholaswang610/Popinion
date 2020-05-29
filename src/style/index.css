@@ -21,3 +21,31 @@
 .nav-link:hover, .nav-link.active{
     color: #545354 !important;
 }
+
+.sign-in{
+    margin-left: 15em;
+    margin-top: 12em;
+}
+
+.sign-in-image{
+    margin-top:8em;
+    margin-left: 15em;
+    position:relative;
+    border-radius:50%;
+    background-color:black;
+    max-width:500px;
+    min-width:500px;
+    min-height:500px;
+    height:500px;
+    overflow:hidden;
+}
+
+img{
+    position:absolute;
+    max-width:100%;
+    width:100%;
+    min-width:500px;
+    margin-top: -10em;
+    transform:translateX(-0.9725em);
+}
+
