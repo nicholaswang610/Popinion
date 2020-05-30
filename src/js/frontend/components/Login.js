@@ -14,12 +14,11 @@ class Login extends Component{
     handleSubmit = e =>{
         e.preventDefault();
         e.target.reset();
-        console.log(this.state);
     }
     render(){
         return(
             <div className='row mt-5 mx-5'>
-                <div className='sign-in col-3'>
+                <div className='card py-3 sign-in col-3'>
                     <form onSubmit={e=>{this.handleSubmit(e)}}>
                         <h4 className='text-center mb-3'>Sign in to Reviews</h4>
                         <div className='form-group'>
