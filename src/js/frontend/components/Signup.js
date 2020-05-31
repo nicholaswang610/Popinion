@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import {connect} from 'react-redux';
+import {signup} from '../actionCreators/authActions.js';
 
 class Signup extends Component{
     constructor(props){
@@ -25,14 +25,12 @@ class Signup extends Component{
             [e.target.id]:e.target.value
         });
     };
+
     handleSubmit = e =>{
         e.preventDefault();
-        this.props.signup(this.state);
-        if(this.state.password.length >= 6 && this.state.password === this.state.passwordConfirm){
-            e.target.reset();
-            this.setState(this.initState);
-        }
+        this.props.signUp(this.state);
     }
+
     render(){
         return(
             <div className='row mt-5 mx-5'>
@@ -81,7 +79,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return({
-        signup: (credentials) => {dispatch({type: 'SIGNUP', signUpCredentials: credentials})}
+        signUp: (credentials) => {dispatch(signup(credentials))}
     });
 }
 

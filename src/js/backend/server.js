@@ -15,19 +15,6 @@ const database = mysql.createConnection({
     database:process.env.DATABASE
 });
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
-
-app.post('/signup', async (req,res)=>{
-    const {email,password, firstName, lastName} = req.body;
-    const hashedPassword = await bcrypt.hash(password, 8);
-    database.query('INSERT INTO users SET ?', {first_name: firstName, last_name: lastName, email: email, pass: hashedPassword}, (err, result) =>{
-        if(err){
-            console.log(err);
-        }
-    })
-});
-
 database.connect(err=>{
     if(err){
         console.log('error connecting ' + err.stack);
@@ -35,6 +22,32 @@ database.connect(err=>{
     }else{
         console.log('MYSQL connected');
     }
+});
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
+
+app.post('/signup', async (req,res)=>{
+    const {email,password, firstName, lastName} = req.body;
+    const hashedPassword = await bcrypt.hash(password, 8);
+
+    database.query('SELECT * FROM users WHERE email = ?', [email], (err,result)=>{
+        console.log(result);
+        if(err){
+            res.send({msg: err});
+        }else if(result.length > 0){
+            res.send({error: true, msg: "An account was already created with this email"});
+        }
+        else if(result.length === 0){
+            database.query('INSERT INTO users SET ?', {first_name: firstName, last_name: lastName, email: email, pass: hashedPassword}, (err, result) => {
+                if(err){
+                    console.log(err);
+                }
+            });
+            res.send({error: false, msg: "Thank you! Your account has been created"});
+        }
+    });
+    
 });
 
 app.listen(PORT, () => {console.log('server started on port ' + PORT)});

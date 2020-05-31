@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import woman from '../../../style/woman.jpg'
+import {connect} from 'react-redux';
 
 class Login extends Component{
     state = {
@@ -42,4 +43,13 @@ class Login extends Component{
     }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+
+}
+
+const mapDispatchToProps = (dispatch) => {
+
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
