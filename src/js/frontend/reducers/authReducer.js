@@ -1,8 +1,7 @@
-import axios from "axios";
-
 const initState = {
     authError: null,
-    authSuccess: null
+    authSuccess: null,
+    accessToken: null
 }
 
 const authReducer = (state=initState, action) =>{
@@ -18,6 +17,20 @@ const authReducer = (state=initState, action) =>{
                 ...state,
                 authError: null,
                 authSuccess: action.msg
+            });
+        case 'LOGIN_FAIL':
+            return({
+                ...state,
+                authSuccess: null,
+                accessToken: null,
+                authError: action.error
+            });
+        case 'LOGIN_SUCCESS':
+            return({
+                ...state,
+                authError:null,
+                authSuccess: action.msg,
+                accessToken: action.accessToken
             });
         default:
             return state;

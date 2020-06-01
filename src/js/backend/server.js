@@ -2,9 +2,9 @@ require('dotenv').config({path: __dirname + '../../../../.env'});
 const express = require('express');
 const mysql = require('mysql');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const app = express();
-app.use(cors());
 const PORT = process.env.PORT || 5000;
 
 //database
@@ -24,6 +24,7 @@ database.connect(err=>{
     }
 });
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
@@ -47,7 +48,26 @@ app.post('/signup', async (req,res)=>{
             res.send({error: false, msg: "Thank you! Your account has been created"});
         }
     });
-    
+});
+
+app.post('/login', (req,res) => {
+    console.log(req);
+    const {email, password} = req.body;
+    database.query('SELECT * FROM users WHERE email = ?', [email], async(err, result) => {
+        if(result.length === 0){
+            res.send({error: true, msg: "No account has been created with this email"});
+        }
+        else if(!(await bcrypt.compare(password, result[0].pass))){
+            res.send({error: true, msg: "Email or password is incorrect"});
+        }
+        else if(await bcrypt.compare(password, result[0].pass)){
+            const id = result[0].id;
+            const firstName = result[0].first_name;
+            const payload = {id: id, firstName: firstName};
+            const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn:process.env.JWT_EXPIRES_IN});
+            res.send({error: false, accessToken: accessToken});
+        }
+    });
 });
 
 app.listen(PORT, () => {console.log('server started on port ' + PORT)});

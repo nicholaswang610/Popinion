@@ -29,4 +29,25 @@ const signup = (userObject) => {
     }
 }
 
-export {signup};
+const login = (userObject) => {
+    return (dispatch) => {
+        if(!userObject.email || !userObject.password){
+            dispatch({type: "LOGIN_FAIL", error: "Missing one or more fields"});
+        }
+        else{
+            axios.post('http://localhost:5000/login', {
+                email: userObject.email,
+                password: userObject.password
+            }).then(response=>{
+                console.log(response);
+                if(response.data.error){
+                    dispatch({type: 'LOGIN_FAIL', error: response.data.msg});
+                }
+                else{
+                    dispatch({type: 'LOGIN_SUCCESS', msg: "Successfully logged in", accessToken: response.data.accessToken});
+                }
+            });
+        }
+    }
+}
+export {signup, login};

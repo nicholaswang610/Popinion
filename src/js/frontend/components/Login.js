@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import woman from '../../../style/woman.jpg'
 import {connect} from 'react-redux';
+import {login} from '../actionCreators/authActions.js';
 
 class Login extends Component{
     state = {
@@ -14,7 +15,8 @@ class Login extends Component{
     };
     handleSubmit = e =>{
         e.preventDefault();
-        e.target.reset();
+        this.props.logIn(this.state);
+        this.props.history.push('/');
     }
     render(){
         return(
@@ -33,6 +35,10 @@ class Login extends Component{
                         <div className='form-group'>
                             <input type='submit' value="Log in" className='btn btn-dark'></input>
                         </div>
+                        <div>
+                            {this.props.authError ? (<div className="alert alert-danger">{this.props.authError}</div>) : null}
+                            {this.props.authSuccess ? (<div className="alert alert-success">{this.props.authSuccess}</div>): null}
+                        </div>
                     </form>
                 </div>
                 <div className='sign-in-image col-sm'>
@@ -44,11 +50,17 @@ class Login extends Component{
 }
 
 const mapStateToProps = (state) => {
-
+    return({
+        authError: state.auth.authError,
+        authSuccess: state.auth.authSuccess,
+        accessToken: state.auth.accessToken
+    });
 }
 
 const mapDispatchToProps = (dispatch) => {
-
+    return({
+        logIn: (credentials) => {dispatch(login(credentials))}
+    });
 }
 
 
