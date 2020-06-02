@@ -1,6 +1,8 @@
 const initState = {
     authError: null,
     authSuccess: null,
+    loginError: null,
+    loginSuccess: null,
     accessToken: null
 }
 
@@ -21,16 +23,26 @@ const authReducer = (state=initState, action) =>{
         case 'LOGIN_FAIL':
             return({
                 ...state,
-                authSuccess: null,
+                loginSuccess: null,
                 accessToken: null,
-                authError: action.error
+                loginError: action.error
             });
         case 'LOGIN_SUCCESS':
             return({
                 ...state,
-                authError:null,
-                authSuccess: action.msg,
+                loginError:null,
+                loginSuccess: action.msg,
                 accessToken: action.accessToken
+            });
+        case 'LOGOUT':
+            localStorage.clear();
+            return({
+                ...state,
+                loginError:null,
+                loginSuccess:null,
+                accessToken:null,
+                authError: null,
+                authSuccess: null,
             });
         default:
             return state;

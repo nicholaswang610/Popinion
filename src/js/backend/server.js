@@ -33,7 +33,6 @@ app.post('/signup', async (req,res)=>{
     const hashedPassword = await bcrypt.hash(password, 8);
 
     database.query('SELECT * FROM users WHERE email = ?', [email], (err,result)=>{
-        console.log(result);
         if(err){
             res.send({msg: err});
         }else if(result.length > 0){
@@ -51,7 +50,6 @@ app.post('/signup', async (req,res)=>{
 });
 
 app.post('/login', (req,res) => {
-    console.log(req);
     const {email, password} = req.body;
     database.query('SELECT * FROM users WHERE email = ?', [email], async(err, result) => {
         if(result.length === 0){
@@ -69,5 +67,23 @@ app.post('/login', (req,res) => {
         }
     });
 });
+
+//middleware token auth
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    if(token == null) 
+        return res.sendStatus(401);
+    else{
+        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
+            if(err)
+                return res.sendStatus(403);
+            else{
+                req.payload = payload;
+                next();
+            }
+        });
+    }
+}
 
 app.listen(PORT, () => {console.log('server started on port ' + PORT)});

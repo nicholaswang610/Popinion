@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import woman from '../../../style/woman.jpg'
 import {connect} from 'react-redux';
 import {login} from '../actionCreators/authActions.js';
+import {Redirect} from 'react-router-dom';
 
 class Login extends Component{
     state = {
@@ -16,12 +17,11 @@ class Login extends Component{
     handleSubmit = e =>{
         e.preventDefault();
         this.props.logIn(this.state);
-        this.props.history.push('/');
     }
     render(){
         return(
             <div className='row mt-5 mx-5'>
-                <div className='card py-3 sign-in col-3'>
+                <div className='card py-3 login col-3'>
                     <form onSubmit={e=>{this.handleSubmit(e)}}>
                         <h4 className='text-center mb-3'>Sign in to Reviews</h4>
                         <div className='form-group'>
@@ -36,8 +36,8 @@ class Login extends Component{
                             <input type='submit' value="Log in" className='btn btn-dark'></input>
                         </div>
                         <div>
-                            {this.props.authError ? (<div className="alert alert-danger">{this.props.authError}</div>) : null}
-                            {this.props.authSuccess ? (<div className="alert alert-success">{this.props.authSuccess}</div>): null}
+                            {this.props.loginError ? (<div className="alert alert-danger">{this.props.loginError}</div>) : null}
+                            {this.props.loginSuccess ? (<Redirect to="/">{this.props.loginSuccess}</Redirect>): null}
                         </div>
                     </form>
                 </div>
@@ -51,9 +51,8 @@ class Login extends Component{
 
 const mapStateToProps = (state) => {
     return({
-        authError: state.auth.authError,
-        authSuccess: state.auth.authSuccess,
-        accessToken: state.auth.accessToken
+        loginError: state.auth.loginError,
+        loginSuccess: state.auth.loginSuccess
     });
 }
 

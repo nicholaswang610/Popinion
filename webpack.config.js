@@ -1,9 +1,10 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: "./src/js/frontend/index.js",
     output: {
-        path: path.resolve(__dirname, "dist"),
+        path: path.join(__dirname, "dist"),
         filename: 'bundle.js'
     },
     devServer: {
@@ -19,7 +20,7 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ['@babel/preset-env', '@babel/react'],
+                        presets: ['@babel/preset-env', '@babel/preset-react'],
                         plugins:['@babel/plugin-proposal-class-properties']
                     }
                 }
@@ -31,8 +32,22 @@ module.exports = {
             {
                 test:/\.(png|jpg)$/,
                 use: 'url-loader'
+            },
+            {
+                test:/\.html$/,
+                use: [
+                    {
+                        loader: 'html-loader'
+                    }
+                ]
             }
             
         ]
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            filename: './index.html'
+        })
+    ]
 };

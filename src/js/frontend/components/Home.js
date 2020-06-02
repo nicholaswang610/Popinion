@@ -5,7 +5,7 @@ class Home extends Component{
     render(){
         return(
             <div className="banner">
-                <NavbarHome/>
+                <NavbarHome cookies={this.props.cookies}/>
             </div>
             
         );

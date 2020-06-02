@@ -62,7 +62,7 @@ class Signup extends Component{
                             {this.props.authSuccess ? (<div className="alert alert-success">{this.props.authSuccess}</div>): null}
                         </div>
                         <div className='form-group'>
-                            <input type='submit' value="Log in" className='btn btn-dark'></input>
+                            <input type='submit' value="Sign up" className='btn btn-dark'></input>
                         </div>
                     </form>
                 </div>

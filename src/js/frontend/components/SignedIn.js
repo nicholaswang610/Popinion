@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {NavLink} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 const SignedOut = (props) =>{
     return(
@@ -9,11 +10,16 @@ const SignedOut = (props) =>{
                     <NavLink className='nav-link text-white' exact to='/notifications'>Notifications</NavLink>
                 </li>
                 <li className='nav-item'>
-                    <NavLink className='nav-link text-white' exact to='/login'>Log Out</NavLink>
+                    <a className='nav-link text-white' href="/" onClick={props.logout}>Log Out</a>
                 </li>
             </ul>
         </div>
     );
 }
 
-export default SignedOut;
+const mapDispatchToProps = (dispatch) => {
+    return({
+        logout: ()=>dispatch({type:"LOGOUT"})
+    });
+}
+export default connect(null, mapDispatchToProps)(SignedOut);
