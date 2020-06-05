@@ -1,10 +1,12 @@
 import authReducer from './authReducer.js';
-import projectReducer from './projectReducer.js';
+import reviewReducer from './reviewReducer.js';
 import {combineReducers} from 'redux';
+import preloadReducer from './preloadReducer.js';
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    project: projectReducer
+    review: reviewReducer,
+    preload: preloadReducer
 });
 
 export default rootReducer;

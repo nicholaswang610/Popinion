@@ -12,7 +12,7 @@ class Home extends Component{
             <div className='home-body'>
                 <div className="banner">
                     <NavbarHome cookies={this.props.cookies}/>
-                    <form class='input-group'>
+                    <form className='input-group'>
                         <input className='form-control search' type='search' placeholder='Search for something...'></input>
                     </form>
                 </div>

@@ -11,11 +11,9 @@ import {CookiesProvider} from 'react-cookie';
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
-    <CookiesProvider>
-        <Provider store={store}>
-            <App/>
-        </Provider>
-    </CookiesProvider>
+    <Provider store={store}>
+        <App/>
+    </Provider>
     ,
      document.getElementById('root')
 );

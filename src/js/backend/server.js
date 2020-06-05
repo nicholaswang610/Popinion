@@ -68,6 +68,19 @@ app.post('/login', (req,res) => {
     });
 });
 
+app.get('/gaming', (req,res)=>{
+    database.query('SELECT DISTINCT title FROM gaming', (err, result)=>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log(result);
+            res.send({titles: result})
+        }
+        
+    });
+})
+
 //middleware token auth
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
