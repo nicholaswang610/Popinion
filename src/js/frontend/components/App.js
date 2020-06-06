@@ -14,12 +14,12 @@ class App extends Component{
             <BrowserRouter>
                 <Switch>
                     <Route exact path='/' component={Home}/>
-                    <Route path='/login' component={Login}/>
-                    <Route path='/signup' component={Signup}/>
-                    <Route path='/gaming' component={Gaming}/>
-                    <Route path='/movies' component={Movies}/>
-                    <Route path='/music' component={Music}/>
-                    <Route path='/books' component={Books}/>
+                    <Route exact path='/login' component={Login}/>
+                    <Route exact path='/signup' component={Signup}/>
+                    <Route exact path='/gaming' component={Gaming}/>
+                    <Route exact path='/movies' component={Movies}/>
+                    <Route exact path='/music' component={Music}/>
+                    <Route exact path='/books' component={Books}/>
                 </Switch>
             </BrowserRouter>
         )

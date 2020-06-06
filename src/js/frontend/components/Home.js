@@ -11,7 +11,7 @@ class Home extends Component{
         return(
             <div className='home-body'>
                 <div className="banner">
-                    <NavbarHome cookies={this.props.cookies}/>
+                    <NavbarHome/>
                     <form className='input-group'>
                         <input className='form-control search' type='search' placeholder='Search for something...'></input>
                     </form>

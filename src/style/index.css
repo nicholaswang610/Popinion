@@ -22,6 +22,14 @@
     background-image: url('./breakfast.jpg');
 }
 
+.nav-item{
+    margin: 0 1em;
+}
+.nav-link{
+    font-size: 130%;
+    text-shadow: 2px 2px rgba(0,0,0,0.45);
+}
+
 .nav-link:hover, .nav-link.active{
     color: #545354 !important;
 }
@@ -154,14 +162,58 @@ a,a:link,a:visited,a:hover,a:active{
 }
 
 .game-wrapper{
-    display:grid;
-    grid-template-columns: repeat(4,auto);
+    position:relative;
+    display:flex;
+    flex-wrap:wrap;
     width:100%;
-    justify-content:space-evenly;
+    justify-content:flex-start;
 }
 
 .game-title{
+    position:relative;
     display:inline-block;
+    left:23%;
     width:300px;
     height:300px;
+    justify-content:space-evenly;
+}
+
+.game-banner{
+    background-image: url('./gamingbackground.jpg');
+    background-repeat: no-repeat;
+    background-position-y:38%;
+}
+
+.path-container{
+    position:relative;
+    background-color:#f0f0f0;
+    padding: 0.5em 0em;
+    box-shadow: 3px 3px 4px rgba(0,0,0,0.45);
+}
+
+.path-to-gaming{
+    position:relative;
+    left:10%;
+    display:inline-block;
+    vertical-align:middle;
+}
+
+.add-game{
+    background-image:url('./plus.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.game-input{
+    position:relative;
+    display:flex;
+    justify-content:center;
+}
+.search-game, .search-game:focus, .search-game:active{
+    position:relative;
+    display:inline-block;
+    width:75%;
+    border:0;
+    outline:0;
+    border-bottom:1px solid rgba(0,0,0,.125);
 }
