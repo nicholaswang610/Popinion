@@ -5,6 +5,7 @@ module.exports = {
     entry: "./src/js/frontend/index.js",
     output: {
         path: path.join(__dirname, "dist"),
+        publicPath:'/',
         filename: 'bundle.js'
     },
     devServer: {
