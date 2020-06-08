@@ -153,6 +153,7 @@ a,a:link,a:visited,a:hover,a:active{
     left:25%;
     top:10em;
     height:2.8em;
+    box-shadow:3px 3px 3px rgba(0,0,0,.3);
 }
 
 .search:focus{
@@ -216,4 +217,15 @@ a,a:link,a:visited,a:hover,a:active{
     border:0;
     outline:0;
     border-bottom:1px solid rgba(0,0,0,.125);
+}
+
+.preview {
+    border-bottom: 1px solid black;
+    cursor:pointer;
+}
+
+.review-tag{
+    background-color:rgb(32, 216, 57);
+    color:white;
+    padding: 2px;
 }
