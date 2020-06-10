@@ -5,12 +5,28 @@ import {NavLink} from 'react-router-dom';
 import NavbarHome from '../../NavbarHome.js';
 import Post from './Post.js';
 
-class GamingPosts extends Component{
+class GamingPosts extends Component
+{
+    state= {
+        search: ''
+    }
     componentDidMount(){
         this.props.fetchReviews(this.props.match.params.title);
     }
+    handleChange = (e) =>{
+        this.setState({
+            search: e.target.value
+        });
+    }
     render(){
-        const list = this.props.reviews.map(review=>{
+        const filteredList = this.props.reviews.filter((review)=>{
+            return (
+                review.review_title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
+                review.author_first_name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
+                review.author_last_name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+            );
+        });
+        const list = filteredList.map(review=>{
             return(
                 <Post key={review.id} review={review}></Post>
             )});
@@ -29,6 +45,12 @@ class GamingPosts extends Component{
                     </span>
                 </div>
                 <div className='container my-3'>
+                    <div className='game-input'>
+                        <input className='search-game' type='text' placeholder='Search' onChange={e=>{this.handleChange(e)}}></input>
+                        <i className="fas fa-search"></i>
+                        <h4 className='mx-3 mt-1'>or</h4>
+                        <NavLink to='/gaming/add-review'><button type='button' className='btn'>MAKE A REVIEW</button></NavLink>
+                    </div>
                     <div>{list}</div>
                     <div>
                         + Add a review

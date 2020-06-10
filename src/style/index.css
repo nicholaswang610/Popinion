@@ -210,13 +210,20 @@ a,a:link,a:visited,a:hover,a:active{
     display:flex;
     justify-content:center;
 }
+
+.container .game-input{
+    position:relative;
+    display:flex;
+    justify-content:space-evenly;
+}
 .search-game, .search-game:focus, .search-game:active{
     position:relative;
     display:inline-block;
     width:75%;
-    border:0;
-    outline:0;
-    border-bottom:1px solid rgba(0,0,0,.125);
+    border-radius:10px;
+    outline:none;
+    padding: 10px;
+    border: 1px solid #d9d9d9;
 }
 
 .preview {
@@ -228,4 +235,28 @@ a,a:link,a:visited,a:hover,a:active{
     background-color:rgb(32, 216, 57);
     color:white;
     padding: 2px;
+}
+
+.review-title:hover{
+    color: #52527a;
+}
+
+.btn{
+    background-color:#ff9966;
+    font-weight: 600;
+    color:white;
+    border-radius:10px;
+}
+
+.fa-search{
+    position:absolute;
+    top:53%;
+    font-size:1.2em;
+    right:13.5%;
+}
+.container .game-input .fa-search{
+    position:absolute;
+    top:30%;
+    font-size:1.15em;
+    right:24%;
 }

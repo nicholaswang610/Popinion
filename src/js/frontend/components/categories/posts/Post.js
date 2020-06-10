@@ -12,6 +12,7 @@ class Post extends Component{
         });
     }
     render(){
+        const reviewTitle = this.props.review.review_title;
         const authorFirstName = this.props.review.author_first_name;
         const authorLastName = this.props.review.author_last_name;
         const review = this.props.review.review;
@@ -20,7 +21,7 @@ class Post extends Component{
                 <div className='preview my-3 px-3'>
                     <div>
                         <span className='review-tag'>REVIEW</span>
-                        <h3 className='my-0'>Lorem ispsum moredit</h3>
+                        <h3 className='review-title my-0'>{reviewTitle}</h3>
                         <div>{'by ' + authorFirstName + ' ' + authorLastName}</div>
                     </div>
                     <div className='content my-3 px-3'>

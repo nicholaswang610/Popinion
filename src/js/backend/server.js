@@ -69,7 +69,7 @@ app.post('/login', (req,res) => {
 });
 
 app.get('/gaming', (req,res)=>{
-    database.query('SELECT DISTINCT title, id FROM gaming', (err, result)=>{
+    database.query('SELECT DISTINCT title FROM gaming', (err, result)=>{
         if(err){
             console.log(err);
         }
