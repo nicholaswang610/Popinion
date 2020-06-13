@@ -8,17 +8,20 @@ import Post from './Post.js';
 class GamingPosts extends Component
 {
     state= {
+        title: this.props.match.params.title,
         search: ''
     }
     componentDidMount(){
-        this.props.fetchReviews(this.props.match.params.title);
+        this.props.fetchReviews(this.state.title);
     }
     handleChange = (e) =>{
         this.setState({
+            ...this.state,
             search: e.target.value
         });
     }
     render(){
+        const title = this.state.title;
         const filteredList = this.props.reviews.filter((review)=>{
             return (
                 review.review_title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
@@ -49,12 +52,9 @@ class GamingPosts extends Component
                         <input className='search-game' type='text' placeholder='Search' onChange={e=>{this.handleChange(e)}}></input>
                         <i className="fas fa-search"></i>
                         <h4 className='mx-3 mt-1'>or</h4>
-                        <NavLink to='/gaming/add-review'><button type='button' className='btn'>MAKE A REVIEW</button></NavLink>
+                        <NavLink to={'/gaming/'+title+'/add-review'}><button type='button' className='btn'>MAKE A REVIEW</button></NavLink>
                     </div>
                     <div>{list}</div>
-                    <div>
-                        + Add a review
-                    </div>
                 </div>
             </div>
         );

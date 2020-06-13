@@ -20,9 +20,9 @@ class App extends Component{
                     <Route exact path='/login' component={Login}/>
                     <Route exact path='/signup' component={Signup}/>
                     <Route exact path='/gaming' component={Gaming}/>
-                    <Route path='/gaming/add-game' component={AddGame}/>
-                    <Route path='/gaming/add-review' component={AddReview}/>
-                    <Route path='/gaming/:title' component={GamingPosts}/>
+                    <Route exact path='/gaming/add-game' component={AddGame}/>
+                    <Route exact path='/gaming/:title' component={GamingPosts}/>
+                    <Route exact path='/gaming/:title/add-review' component={AddReview}/>
                     <Route exact path='/movies' component={Movies}/>
                     <Route exact path='/music' component={Music}/>
                     <Route exact path='/books' component={Books}/>

@@ -8,4 +8,17 @@ const fetchRev = (title) => {
     }
 }
 
-export {fetchRev};
+const post = (reviewPayload) => {
+    const authStr = 'Bearer ' + localStorage.getItem('jwt');
+    return (dispatch) => {
+        axios.post('http://localhost:5000/add-review', {
+                headers: {Authorization: authStr}, 
+                data: reviewPayload
+            })
+            .then(response=>{
+                dispatch({type: response.data.auth}) //this dispatches to authreducer, not postreducer for the case where jwt token expired
+            })
+    }
+}
+
+export {fetchRev, post};

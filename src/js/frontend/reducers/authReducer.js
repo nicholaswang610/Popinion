@@ -44,6 +44,18 @@ const authReducer = (state=initState, action) =>{
                 authError: null,
                 authSuccess: null,
             });
+        case 'VALID_TOKEN':
+            return({
+                ...state,
+                loginError:null,
+            })
+        case 'EXPIRED_TOKEN':
+            return({
+                ...state,
+                loginError: "Your access token expired, please log in again",
+                loginSuccess: null,
+                accessToken: null
+            })
         default:
             return state;
     }

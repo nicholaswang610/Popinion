@@ -61,7 +61,8 @@ app.post('/login', (req,res) => {
         else if(await bcrypt.compare(password, result[0].pass)){
             const id = result[0].id;
             const firstName = result[0].first_name;
-            const payload = {id: id, firstName: firstName};
+            const lastName = result[0].last_name;
+            const payload = {id: id, firstName: firstName, lastName: lastName};
             const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn:process.env.JWT_EXPIRES_IN});
             res.send({error: false, accessToken: accessToken});
         }
@@ -95,20 +96,38 @@ app.get('/gaming/:title', (req,res) => {
 
 //middleware token auth
 const authenticateToken = (req, res, next) => {
-    const authHeader = req.headers['authorization'];
+    console.log(req);
+    const authHeader = req.body.headers['Authorization'];
     const token = authHeader && authHeader.split(' ')[1];
     if(token == null) 
         return res.sendStatus(401);
     else{
-        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
+        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data) => {
             if(err)
-                return res.sendStatus(403);
+                res.send({auth: 'EXPIRED_TOKEN'});
             else{
-                req.payload = payload;
+                req.userInfo = data;
+                res.send({auth: 'VALID_TOKEN'})
                 next();
             }
         });
     }
 }
+
+app.post('/add-review', authenticateToken, (req,res) => {
+    database.query('INSERT INTO ' + req.body.data.genre + ' SET ?', {
+        title: req.body.data.title,
+        author_first_name: req.userInfo.firstName,
+        author_last_name: req.userInfo.lastName,
+        author_id: req.userInfo.id,
+        review: req.body.data.reviewContent,
+        review_title: req.body.data.reviewTitle
+    }, (err, result) => {
+        if(err){
+            console.log(err);
+        }
+    });
+
+});
 
 app.listen(PORT, () => {console.log('server started on port ' + PORT)});

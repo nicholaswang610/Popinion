@@ -1,4 +1,12 @@
 
+html{
+    height:100%;
+}
+
+body, #root{
+    height:100%;
+}
+
 .home-body{
     overflow-x:hidden;
 }
@@ -241,7 +249,7 @@ a,a:link,a:visited,a:hover,a:active{
     color: #52527a;
 }
 
-.btn{
+.game-input .btn{
     background-color:#ff9966;
     font-weight: 600;
     color:white;
