@@ -35,15 +35,7 @@ const authReducer = (state=initState, action) =>{
                 accessToken: action.accessToken
             });
         case 'LOGOUT':
-            localStorage.clear();
-            return({
-                ...state,
-                loginError:null,
-                loginSuccess:null,
-                accessToken:null,
-                authError: null,
-                authSuccess: null,
-            });
+            return initState;
         case 'VALID_TOKEN':
             return({
                 ...state,

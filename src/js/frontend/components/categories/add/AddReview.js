@@ -6,12 +6,12 @@ import {post} from '../../../actionCreators/postActions.js';
  
 class AddReview extends Component{
     state = {
-        redirect: false,
+        incomplete: false,
         cancel: false,
-        genre: '',
-        title: '',
-        reviewTitle: '',
-        reviewContent: ''
+        genre: null,
+        title: null,
+        reviewTitle: null,
+        reviewContent: null
     }
 
     componentDidMount(){
@@ -23,25 +23,26 @@ class AddReview extends Component{
             title:title
         });
     }
-
+    //might need to make this async/await so that i can conditionally redirect
     handleSubmit(e){
         e.preventDefault();
-        const postPayload = {
-            genre: this.state.genre,
-            title: this.state.title,
-            reviewTitle: this.state.reviewTitle,
-            reviewContent: this.state.reviewContent
+        if(this.state.reviewTitle && this.state.reviewContent){
+            const postPayload = {
+                genre: this.state.genre,
+                title: this.state.title,
+                reviewTitle: this.state.reviewTitle,
+                reviewContent: this.state.reviewContent
+            }
+            this.props.postReview(postPayload); 
+            this.props.history.goBack();
         }
-        this.props.postReview(postPayload);
-    }
-
-    redirectUser(){
-        if(this.props.loggedIn){
+        else{
             this.setState({
                 ...this.state,
-                redirect: true
+                incomplete:true
             })
         }
+        
     }
 
     handleChange(e){
@@ -59,8 +60,12 @@ class AddReview extends Component{
 
     //note: will change 'game-banner' and etc. class names to template strings later, based on genre
     render(){
-        if(this.state.cancel || this.state.redirect){
-            return(<Redirect to={'/'+this.state.genre+'/'+this.state.title}></Redirect>)
+        if(this.state.cancel){
+            return(<Redirect to={'/'+this.state.genre+'/'+this.state.title}></Redirect>);
+        }
+        else if(!(this.props.loggedIn)){
+            this.props.loginRedirectMsg();
+            return(<Redirect to='/login'></Redirect>);
         }
         else{
             return(
@@ -81,10 +86,11 @@ class AddReview extends Component{
                     </div>
                     <div className='container my-3'>
                         <div className='card py-3'>
-                            <form onSubmit={e=>{this.handleSubmit(e); this.redirectUser()}}>
+                            <form onSubmit={e=>{this.handleSubmit(e)}}>
                                 <div className='form-group px-3'>
                                     <input type='text' id='reviewTitle' placeholder='Title' className='form-control my-3' onChange={e=>{this.handleChange(e)}}></input>
                                     <textarea id='reviewContent' cols="1" rows="8" placeholder='Text (required)' className='form-control my-3' onChange={e=>{this.handleChange(e)}}></textarea>
+                                    {this.state.incomplete ? (<div className='alert alert-danger'>Missing field(s)</div>) : null}
                                     <button className='btn btn-outline-dark mr-3' onClick={e=>{this.cancelPost(e)}}>CANCEL</button>
                                     <input type='submit' value="POST" className='btn btn-dark'></input>
                                 </div>
@@ -98,7 +104,6 @@ class AddReview extends Component{
     }
 }
 
-
 const mapStateToProps = (state) => {
     return({
         loggedIn: state.auth.loginSuccess
@@ -106,6 +111,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return({
+        loginRedirectMsg: ()=>{dispatch({type: 'LOGIN_FAIL', error: 'You must be logged in to make a review'})},
         postReview: (reviewPayload)=>{dispatch(post(reviewPayload))}
     });
 }

@@ -37,7 +37,7 @@ class Login extends Component{
                         </div>
                         <div>
                             {this.props.loginError ? (<div className="alert alert-danger">{this.props.loginError}</div>) : null}
-                            {this.props.loginSuccess ? (<Redirect to="/">{this.props.loginSuccess}</Redirect>): null}
+                            {this.props.loginSuccess ? (this.props.history.goBack()): null}
                         </div>
                     </form>
                 </div>

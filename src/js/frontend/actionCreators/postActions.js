@@ -9,14 +9,14 @@ const fetchRev = (title) => {
 }
 
 const post = (reviewPayload) => {
-    const authStr = 'Bearer ' + localStorage.getItem('jwt');
     return (dispatch) => {
+        const authStr = 'Bearer ' + localStorage.getItem('jwt');
         axios.post('http://localhost:5000/add-review', {
                 headers: {Authorization: authStr}, 
                 data: reviewPayload
             })
             .then(response=>{
-                dispatch({type: response.data.auth}) //this dispatches to authreducer, not postreducer for the case where jwt token expired
+                dispatch({type: response.data.auth}); //this dispatches to authreducer, not postreducer for the case where jwt token expired
             })
     }
 }
