@@ -32,7 +32,14 @@ module.exports = {
             },
             {
                 test:/\.(png|jpg)$/,
-                use: 'url-loader'
+                use:[
+                    {
+                        loader:'file-loader',
+                        options: {
+                            esModule:false
+                        }
+                    }
+                ]
             },
             {
                 test:/\.html$/,

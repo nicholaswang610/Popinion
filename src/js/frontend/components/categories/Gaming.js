@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {preloadGames} from '../../actionCreators/preloadActions.js';
 import NavbarHome from '../NavbarHome.js';
 import {NavLink} from 'react-router-dom';
+
 class Gaming extends Component
 {
     state={
@@ -26,7 +27,9 @@ class Gaming extends Component
         const gameList = filteredList.map((title, i)=>{
             return(
                 <NavLink to={'/gaming/'+title.title} key={i}>
-                    <div className='game-title card mx-4 my-4 text-center w-300'>{title.title}</div>
+                    <div className='game-title card mx-4 my-4'>
+                        <img className='img-fluid rounded' src={require(`../../../../style/${title.title}.jpg`)} alt={title.title}></img>
+                    </div>
                 </NavLink>
             );
         });
@@ -45,7 +48,7 @@ class Gaming extends Component
                 </div>
                 <div className='game-input'>
                     <input className='search-game mt-4' type='text' placeholder='Search a title...' onChange={e=>{this.handleChange(e)}}></input>
-                    <i className="fas fa-search"></i>
+                    <i className="fas fa-search" type='submit'></i>
                 </div>
                 <div className='game-wrapper'>
                     <NavLink to='/gaming/add-game'>
