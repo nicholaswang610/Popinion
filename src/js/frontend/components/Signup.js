@@ -34,7 +34,7 @@ class Signup extends Component{
     render(){
         return(
             <div className='row mt-5 mx-5'>
-                <div className='card py-3 sign-up col-3'>
+                <div className='card py-3 sign-up col'>
                     <form onSubmit={e=>{this.handleSubmit(e)}}>
                         <h4 className='text-center mb-3'>Create an account</h4>
                         <div className='form-group'>

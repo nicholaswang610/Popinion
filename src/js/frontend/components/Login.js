@@ -23,7 +23,7 @@ class Login extends Component{
             <div className='row mt-5 mx-5'>
                 <div className='card py-3 login col-3'>
                     <form onSubmit={e=>{this.handleSubmit(e)}}>
-                        <h4 className='text-center mb-3'>Sign in to Reviews</h4>
+                        <h4 className='text-center mb-3'>Sign in to Welp</h4>
                         <div className='form-group'>
                             <label htmlFor='email'>Email address</label>
                             <input type='email' id='email' className='form-control' placeholder='Enter email' onChange={e=>{this.handleChange(e)}}></input>
