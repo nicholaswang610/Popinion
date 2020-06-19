@@ -96,7 +96,6 @@ app.get('/gaming/:title', (req,res) => {
 
 //middleware token auth
 const authenticateToken = (req, res, next) => {
-    console.log(req);
     const authHeader = req.body.headers['Authorization'];
     const token = authHeader && authHeader.split(' ')[1];
     if(token == null) 
@@ -115,13 +114,15 @@ const authenticateToken = (req, res, next) => {
 }
 
 app.post('/add-review', authenticateToken, (req,res) => {
+    console.log(req.body);
     database.query('INSERT INTO ' + req.body.data.genre + ' SET ?', {
         title: req.body.data.title,
         author_first_name: req.userInfo.firstName,
         author_last_name: req.userInfo.lastName,
         author_id: req.userInfo.id,
         review: req.body.data.reviewContent,
-        review_title: req.body.data.reviewTitle
+        review_title: req.body.data.reviewTitle,
+        review_rating: req.body.data.rating
     }, (err, result) => {
         if(err){
             console.log(err);

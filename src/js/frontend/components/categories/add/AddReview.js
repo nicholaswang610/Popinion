@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import NavbarHome from '../../NavbarHome.js';
 import {NavLink, Redirect} from 'react-router-dom';
 import {post} from '../../../actionCreators/postActions.js';
+import StarRating from '../../StarRating.js';
  
 class AddReview extends Component{
     state = {
@@ -13,7 +14,6 @@ class AddReview extends Component{
         reviewTitle: null,
         reviewContent: null
     }
-
     componentDidMount(){
         const genre = this.props.match.url.split('/')[1];
         const title = this.props.match.url.split('/')[2];
@@ -26,12 +26,14 @@ class AddReview extends Component{
     //might need to make this async/await so that i can conditionally redirect
     handleSubmit(e){
         e.preventDefault();
+        console.log(this.props);
         if(this.state.reviewTitle && this.state.reviewContent){
             const postPayload = {
                 genre: this.state.genre,
                 title: this.state.title,
                 reviewTitle: this.state.reviewTitle,
-                reviewContent: this.state.reviewContent
+                reviewContent: this.state.reviewContent,
+                rating: this.props.rating
             }
             this.props.postReview(postPayload); 
             this.props.history.goBack();
@@ -50,7 +52,9 @@ class AddReview extends Component{
             [e.target.id]: e.target.value
         })
     }
-
+    handleRating(e){
+        console.log(e.target);
+    }
     cancelPost(e){
         this.setState({
             ...this.state,
@@ -89,6 +93,7 @@ class AddReview extends Component{
                             <form onSubmit={e=>{this.handleSubmit(e)}}>
                                 <div className='form-group px-3'>
                                     <input type='text' id='reviewTitle' placeholder='Title' className='form-control my-3' onChange={e=>{this.handleChange(e)}}></input>
+                                    <StarRating onClick={this.handleRating}></StarRating>
                                     <textarea id='reviewContent' cols="1" rows="8" placeholder='Text (required)' className='form-control my-3' onChange={e=>{this.handleChange(e)}}></textarea>
                                     {this.state.incomplete ? (<div className='alert alert-danger'>Missing field(s)</div>) : null}
                                     <button className='btn btn-outline-dark mr-3' onClick={e=>{this.cancelPost(e)}}>CANCEL</button>
@@ -106,7 +111,8 @@ class AddReview extends Component{
 
 const mapStateToProps = (state) => {
     return({
-        loggedIn: state.auth.loginSuccess
+        loggedIn: state.auth.loginSuccess,
+        rating: state.ratings.rating
     })
 }
 const mapDispatchToProps = (dispatch) => {

@@ -66,6 +66,7 @@ body, #root{
     margin:3em auto;
 }
 
+
 .sign-in-image{
     margin-top:8em;
     margin-left: 15em;
@@ -310,4 +311,13 @@ a,a:link,a:visited,a:hover,a:active{
     top:30%;
     font-size:1.15em;
     right:24%;
+}
+
+input[type='radio']{
+    display:none;
+}
+
+.star-rating{
+    transform:scale(1.2);
+    margin-right:0.2em;
 }
