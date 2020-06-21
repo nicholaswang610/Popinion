@@ -13,7 +13,7 @@ class Home extends Component{
             <div className='home-body'>
                 <div className="banner">
                     <NavbarHome/>
-                    <div className='logo'>yo</div>
+                    <div className='logo'></div>
                     <form className='input-group'>
                         <input className='search' type='search' placeholder='Search for something...'></input>
                     </form>

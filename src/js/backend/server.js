@@ -1,33 +1,27 @@
 require('dotenv').config({path: __dirname + '../../../../.env'});
 const express = require('express');
-const mysql = require('mysql');
+const database = require('./database.js'); 
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
-const app = express();
+const gamingRoute = require('./routes/GamingRoute.js'); 
+const movieRoute = require('./routes/MovieRoute.js');
+const musicRoute = require('./routes/MusicRoute.js');
+const bookRoute = require('./routes/BookRoute.js');
 const PORT = process.env.PORT || 5000;
 
-//database
-const database = mysql.createConnection({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database:process.env.DATABASE
-});
-
-database.connect(err=>{
-    if(err){
-        console.log('error connecting ' + err.stack);
-        return;
-    }else{
-        console.log('MYSQL connected');
-    }
-});
-
+const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
+//Routes
+app.use('/gaming', gamingRoute);
+app.use('/movies', movieRoute);
+app.use('/music', musicRoute);
+app.use('/books', bookRoute);
+
+//root-level
 app.post('/signup', async (req,res)=>{
     const {email,password, firstName, lastName} = req.body;
     const hashedPassword = await bcrypt.hash(password, 8);
@@ -69,30 +63,6 @@ app.post('/login', (req,res) => {
     });
 });
 
-app.get('/gaming', (req,res)=>{
-    database.query('SELECT DISTINCT title FROM gaming', (err, result)=>{
-        if(err){
-            console.log(err);
-        }
-        else{
-            res.send({titles: result})
-        }
-        
-    });
-})
-
-app.get('/gaming/:title', (req,res) => {
-    const title = req.params.title;
-    database.query('SELECT * FROM gaming WHERE title = ?', [title], (err,result) => {
-        if(err){
-            console.log(err);
-        }
-        else{
-            console.log(result);
-            res.send({reviews: result})
-        }
-    });
-});
 
 //middleware token auth
 const authenticateToken = (req, res, next) => {
@@ -114,8 +84,7 @@ const authenticateToken = (req, res, next) => {
 }
 
 app.post('/add-review', authenticateToken, (req,res) => {
-    console.log(req.body);
-    database.query('INSERT INTO ' + req.body.data.genre + ' SET ?', {
+    database.query('INSERT INTO ' + req.body.data.category + ' SET ?', {
         title: req.body.data.title,
         author_first_name: req.userInfo.firstName,
         author_last_name: req.userInfo.lastName,

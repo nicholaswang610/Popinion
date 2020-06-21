@@ -1,16 +1,22 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {preloadGames} from '../../actionCreators/preloadActions.js';
+import preload from '../../actionCreators/preloadActions.js';
 import NavbarHome from '../NavbarHome.js';
 import {NavLink} from 'react-router-dom';
 
-class Gaming extends Component
+class CategoryHome extends Component
 {
     state={
+        category: '',
         search: ''
     }
     componentDidMount(){
-        this.props.preload();
+        const category = this.props.match.url.split('/')[1];
+        this.setState({
+            ...this.state,
+            category: category
+        })
+        this.props.preload(category);
     }
 
     handleChange = (e) =>{
@@ -24,10 +30,10 @@ class Gaming extends Component
             return title.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
         });
 
-        const gameList = filteredList.map((title, i)=>{
+        const titleList = filteredList.map((title, i)=>{
             return(
-                <NavLink to={'/gaming/'+title.title} key={i}>
-                    <div className='game-title card mx-4 my-4'>
+                <NavLink to={`/${this.state.category}/`+title.title} key={i}>
+                    <div className='title card mx-4 my-4'>
                         <img className='img-fluid rounded' src={require(`../../../../style/${title.title}.jpg`)} alt={title.title}></img>
                     </div>
                 </NavLink>
@@ -35,26 +41,26 @@ class Gaming extends Component
         });
 
         return(
-            <div className='game-body'>
-                <div className='game-banner'>
-                    <NavbarHome className='game-navbar'/>
+            <div>
+                <div className={`${this.state.category}-banner`}>
+                    <NavbarHome/>
                 </div>
                 <div className='path-container'>
-                    <span className='path-to-gaming'>
+                    <span className='path'>
                         <NavLink to="/" style={{display:"inline-block", marginRight:"1em"}}><h4>Home</h4></NavLink>
                         <h4 style={{display:'inline-block'}}>></h4> 
-                        <NavLink to='/gaming' style={{display:"inline-block", marginLeft:'1em'}}><h4>Gaming</h4></NavLink>
+                        <NavLink to={`/${this.state.category}`} style={{display:"inline-block", marginLeft:'1em'}}><h4>{this.state.category.replace(this.state.category.charAt(0), this.state.category.charAt(0).toUpperCase())}</h4></NavLink>
                         </span>
                 </div>
-                <div className='game-input'>
-                    <input className='search-game mt-4' type='text' placeholder='Search a title...' onChange={e=>{this.handleChange(e)}}></input>
+                <div className='input-container'>
+                    <input className='search-title mt-4' type='text' placeholder='Search a title...' onChange={e=>{this.handleChange(e)}}></input>
                     <i className="fas fa-search" type='submit'></i>
                 </div>
-                <div className='game-wrapper'>
-                    <NavLink to='/gaming/add-game'>
-                        <div className='game-title card mx-4 my-4 text-center w-300 add-game'>Add a game</div>
+                <div className='title-container'>
+                    <NavLink to= {`/${this.state.category}/add-title`}>
+                        <div className='title card mx-4 my-4 text-center w-300 add-title'>Add a title</div>
                     </NavLink>
-                    {gameList}
+                    {titleList}
                 </div>
                 Icons made by <a href="https://www.flaticon.com/free-icon/add_992651" title="dmitri13">dmitri13</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
             </div>
@@ -71,7 +77,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return({
-        preload: ()=>{dispatch(preloadGames())}
+        preload: (category)=>{dispatch(preload(category))}
     });
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Gaming);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryHome);

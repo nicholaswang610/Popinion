@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 
-const SignedIn = (props) =>{
+const SignedOut = (props) =>{
     return(
-        <div className='navbar-collapse'>
+        <div className='navbar-collapse signed-out'>
             <ul className='navbar-nav text-white'>
                 <li className='nav-item'>
                     <NavLink className='nav-link text-white' exact to='/choose-category'>Write a Review</NavLink>
@@ -12,7 +12,7 @@ const SignedIn = (props) =>{
                     <NavLink className='nav-link text-white' exact to='/about'>About</NavLink>
                 </li>
             </ul>
-            <ul className='login-buttons signed-in navbar-nav text-white'>
+            <ul className='login-buttons navbar-nav text-white'>
                 <li className='nav-item'>
                     <NavLink className='nav-link text-white' exact to='/login'>Login</NavLink>
                 </li>
@@ -25,5 +25,5 @@ const SignedIn = (props) =>{
     
 }
 
-export default SignedIn;
+export default SignedOut;
 

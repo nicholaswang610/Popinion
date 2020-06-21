@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const preloadGames = () =>{
+const preload = (category) =>{
     return (dispatch)=>{
-        axios.get('http://localhost:5000/gaming').then(response=>{
-            dispatch({type:'PRELOAD_GAMES', titles:response.data.titles});
+        axios.get('http://localhost:5000/' + category).then(response=>{
+            dispatch({type:'PRELOAD', titles:response.data.titles});
         });
     }
 }
 
-export {preloadGames};
+export default preload;

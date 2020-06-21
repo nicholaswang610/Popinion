@@ -4,7 +4,7 @@ const initState = {
 
 const preloadReducer = (state=initState, action) =>{
     switch(action.type){
-        case 'PRELOAD_GAMES':
+        case 'PRELOAD':
             return({
                 ...state,
                 titles: action.titles

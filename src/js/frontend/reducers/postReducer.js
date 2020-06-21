@@ -4,7 +4,7 @@ const initState = {
 
 const postReducer = (state=initState, action) =>{
     switch(action.type){
-        case "FETCH_GAMING_REVIEWS": 
+        case "FETCH_REVIEWS": 
             return({
                 ...state,
                 reviews: action.reviews

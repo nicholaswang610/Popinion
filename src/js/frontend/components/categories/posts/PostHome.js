@@ -5,14 +5,20 @@ import {NavLink} from 'react-router-dom';
 import NavbarHome from '../../NavbarHome.js';
 import Post from './Post.js';
 
-class GamingPosts extends Component
+class PostHome extends Component
 {
     state= {
+        category: '',
         title: this.props.match.params.title,
         search: ''
     }
     componentDidMount(){
-        this.props.fetchReviews(this.state.title);
+        const category = this.props.match.url.split('/')[1];
+        this.setState({
+            ...this.state,
+            category: category
+        })
+        this.props.fetchReviews(category, this.state.title);
     }
     handleChange = (e) =>{
         this.setState({
@@ -34,25 +40,25 @@ class GamingPosts extends Component
                 <Post key={review.id} review={review}></Post>
             )});
         return (
-            <div className='game-body'>
-                <div className='game-banner'>
-                    <NavbarHome className='game-navbar'/>
+            <div>
+                <div className={`${this.state.category}-banner`}>
+                    <NavbarHome/>
                 </div>
                 <div className='path-container'>
-                    <span className='path-to-gaming'>
+                    <span className='path'>
                         <NavLink to="/" style={{display:"inline-block", marginRight:"1em"}}><h4>Home</h4></NavLink>
                         <h4 style={{display:'inline-block'}}>></h4> 
-                        <NavLink to='/gaming' style={{display:"inline-block", marginLeft:'1em', marginRight:'1em'}}><h4>Gaming</h4></NavLink>
+                        <NavLink to={`/${this.state.category}`} style={{display:"inline-block", marginLeft:'1em', marginRight:'1em'}}><h4>{this.state.category.replace(this.state.category.charAt(0), this.state.category.charAt(0).toUpperCase())}</h4></NavLink>
                         <h4 style={{display:'inline-block'}}>></h4>
-                        <NavLink to={'/gaming/'+this.props.match.params.title} style={{display:"inline-block", marginLeft:'1em'}}><h4>{this.props.match.params.title}</h4></NavLink>
+                        <NavLink to={`/${this.state.category}/`+this.props.match.params.title} style={{display:"inline-block", marginLeft:'1em'}}><h4>{this.props.match.params.title}</h4></NavLink>
                     </span>
                 </div>
                 <div className='container my-3'>
-                    <div className='game-input'>
-                        <input className='search-game' type='text' placeholder='Search' onChange={e=>{this.handleChange(e)}}></input>
+                    <div className='title-input'>
+                        <input className='search-title' type='text' placeholder='Search' onChange={e=>{this.handleChange(e)}}></input>
                         <i className="fas fa-search"></i>
                         <h4 className='mx-3 mt-1'>or</h4>
-                        <NavLink to={'/gaming/'+title+'/add-review'}><button type='button' className='btn'>MAKE A REVIEW</button></NavLink>
+                        <NavLink to={`/${this.state.category}/`+title+'/add-review'}><button type='button' className='btn'>MAKE A REVIEW</button></NavLink>
                     </div>
                     <div>{list}</div>
                 </div>
@@ -69,8 +75,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return({
-        fetchReviews: (title) => {dispatch(fetchRev(title))}
+        fetchReviews: (category, title) => {dispatch(fetchRev(category, title))}
     })
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GamingPosts);
+export default connect(mapStateToProps, mapDispatchToProps)(PostHome);

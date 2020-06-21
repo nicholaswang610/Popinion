@@ -9,27 +9,26 @@ class AddReview extends Component{
     state = {
         incomplete: false,
         cancel: false,
-        genre: null,
+        category: '',
         title: null,
         reviewTitle: null,
         reviewContent: null
     }
     componentDidMount(){
-        const genre = this.props.match.url.split('/')[1];
+        const category = this.props.match.url.split('/')[1];
         const title = this.props.match.url.split('/')[2];
         this.setState({
             ...this.state,
-            genre:genre,
+            category:category,
             title:title
         });
     }
     //might need to make this async/await so that i can conditionally redirect
     handleSubmit(e){
         e.preventDefault();
-        console.log(this.props);
         if(this.state.reviewTitle && this.state.reviewContent){
             const postPayload = {
-                genre: this.state.genre,
+                category: this.state.category,
                 title: this.state.title,
                 reviewTitle: this.state.reviewTitle,
                 reviewContent: this.state.reviewContent,
@@ -62,10 +61,10 @@ class AddReview extends Component{
         })
     }
 
-    //note: will change 'game-banner' and etc. class names to template strings later, based on genre
+    //note: will change 'game-banner' and etc. class names to template strings later, based on category
     render(){
         if(this.state.cancel){
-            return(<Redirect to={'/'+this.state.genre+'/'+this.state.title}></Redirect>);
+            return(<Redirect to={'/'+this.state.category+'/'+this.state.title}></Redirect>);
         }
         else if(!(this.props.loggedIn)){
             this.props.loginRedirectMsg();
@@ -74,18 +73,18 @@ class AddReview extends Component{
         else{
             return(
                 <div style={{backgroundColor:'gray', height:"100%"}}>
-                    <div className='game-banner'>
-                        <NavbarHome className='game-navbar'/>
+                    <div className={`${this.state.category}-banner`}>
+                        <NavbarHome/>
                     </div>
                     <div className='path-container'>
-                        <span className='path-to-gaming'>
+                        <span className='path'>
                             <NavLink to="/" style={{display:"inline-block", marginRight:"1em"}}><h4>Home</h4></NavLink>
                             <h4 style={{display:'inline-block'}}>></h4> 
-                            <NavLink to='/gaming' style={{display:"inline-block", marginLeft:'1em', marginRight:'1em'}}><h4>Gaming</h4></NavLink>
+                            <NavLink to={`/${this.state.category}`} style={{display:"inline-block", marginLeft:'1em', marginRight:'1em'}}><h4>{this.state.category.replace(this.state.category.charAt(0), this.state.category.charAt(0).toUpperCase())}</h4></NavLink>
                             <h4 style={{display:'inline-block'}}>></h4>
-                            <NavLink to={'/gaming/'+this.state.title} style={{display:"inline-block", marginLeft:'1em', marginRight:'1em'}}><h4>{this.state.title}</h4></NavLink>
+                            <NavLink to={`/${this.state.category}/`+this.state.title} style={{display:"inline-block", marginLeft:'1em', marginRight:'1em'}}><h4>{this.state.title}</h4></NavLink>
                             <h4 style={{display:'inline-block'}}>></h4>
-                            <NavLink to={'/gaming/'+this.state.title+'/add-review'} style={{display:"inline-block", marginLeft:'1em', marginRight:'1em'}}><h4>Add a Review</h4></NavLink>
+                            <NavLink to={`/${this.state.category}/`+this.state.title+'/add-review'} style={{display:"inline-block", marginLeft:'1em', marginRight:'1em'}}><h4>Add a Review</h4></NavLink>
                         </span>
                     </div>
                     <div className='container my-3'>

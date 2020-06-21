@@ -1,5 +1,6 @@
 html{
     height:100%;
+    overflow-y:scroll;
 }
 
 body, #root{
@@ -205,7 +206,7 @@ a,a:link,a:visited,a:hover,a:active{
     box-shadow: 5px 5px 5px rgba(0,0,0,0.45);
 }
 
-.game-wrapper{
+.title-container{
     position:relative;
     display:flex;
     flex-wrap:wrap;
@@ -213,7 +214,7 @@ a,a:link,a:visited,a:hover,a:active{
     justify-content:flex-start;
 }
 
-.game-title{
+.title{
     position:relative;
     display:inline-block;
     left:23%;
@@ -222,7 +223,7 @@ a,a:link,a:visited,a:hover,a:active{
     height:300px;
 }
 
-.game-title img{
+.title img{
     position:absolute;
     display:block;
     max-width:97%;
@@ -231,7 +232,7 @@ a,a:link,a:visited,a:hover,a:active{
     top:55%;
     object-fit:contain;
 }
-.game-banner{
+.gaming-banner{
     background-image: url('./gamingbackground.jpg');
     background-repeat: no-repeat;
     background-position-y:38%;
@@ -244,31 +245,31 @@ a,a:link,a:visited,a:hover,a:active{
     box-shadow: 3px 3px 4px rgba(0,0,0,0.45);
 }
 
-.path-to-gaming{
+.path{
     position:relative;
     left:10%;
     display:inline-block;
     vertical-align:middle;
 }
 
-.add-game{
+.add-title{
     background-image:url('./plus.png');
     background-repeat: no-repeat;
     background-position: center;
 }
 
-.game-input{
+.input-container{
     position:relative;
     display:flex;
     justify-content:center;
 }
 
-.container .game-input{
+.container .title-input{
     position:relative;
     display:flex;
     justify-content:space-evenly;
 }
-.search-game, .search-game:focus, .search-game:active{
+.search-title, .search-title:focus, .search-title:active{
     position:relative;
     display:inline-block;
     width:75%;
@@ -293,7 +294,7 @@ a,a:link,a:visited,a:hover,a:active{
     color: #52527a;
 }
 
-.game-input .btn{
+.title-input .btn{
     background-color:#ff9966;
     font-weight: 600;
     color:white;
@@ -306,7 +307,7 @@ a,a:link,a:visited,a:hover,a:active{
     font-size:1.2em;
     right:13.5%;
 }
-.container .game-input .fa-search{
+.container .title-input .fa-search{
     position:absolute;
     top:30%;
     font-size:1.15em;
