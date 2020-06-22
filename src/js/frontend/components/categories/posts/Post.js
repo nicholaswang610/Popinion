@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import timeSince from './TimeString.js';
 
 class Post extends Component{
     state={
@@ -17,6 +18,7 @@ class Post extends Component{
         const authorLastName = this.props.review.author_last_name;
         const review = this.props.review.review;
         const rating = this.props.review.review_rating;
+        const timeSinceCreated = timeSince(parseInt(this.props.review.time_created));
         const array = [1,2,3,4,5];
         const starArray = array.map((star, index) => {
             return(
@@ -30,7 +32,7 @@ class Post extends Component{
                         <span className='review-tag'>REVIEW</span>
                         <span className='mx-2'>{starArray}</span>
                         <h3 className='review-title my-0'>{reviewTitle}</h3>
-                        <div>{'by ' + authorFirstName + ' ' + authorLastName}</div>
+                        <div>{'by ' + authorFirstName + ' ' + authorLastName + ' ' + timeSinceCreated}</div>
                     </div>
                     <div className='content my-3 px-3'>
                         {this.state.active ? (review):(null)}

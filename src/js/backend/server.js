@@ -91,7 +91,8 @@ app.post('/add-review', authenticateToken, (req,res) => {
         author_id: req.userInfo.id,
         review: req.body.data.reviewContent,
         review_title: req.body.data.reviewTitle,
-        review_rating: req.body.data.rating
+        review_rating: req.body.data.rating,
+        time_created: Date.now().toString()
     }, (err, result) => {
         if(err){
             console.log(err);
