@@ -4,6 +4,7 @@ import NavbarHome from '../../NavbarHome.js';
 import {NavLink, Redirect} from 'react-router-dom';
 import {post} from '../../../actionCreators/postActions.js';
 import StarRating from '../../StarRating.js';
+import Footer from '../../Footer.js';
  
 class AddReview extends Component{
     state = {
@@ -87,7 +88,7 @@ class AddReview extends Component{
                             <NavLink to={`/${this.state.category}/`+this.state.title+'/add-review'} style={{display:"inline-block", marginLeft:'1em', marginRight:'1em'}}><h4>Add a Review</h4></NavLink>
                         </span>
                     </div>
-                    <div className='container my-3'>
+                    <div className='container my-4'>
                         <div className='card py-3'>
                             <form onSubmit={e=>{this.handleSubmit(e)}}>
                                 <div className='form-group px-3'>
@@ -101,6 +102,7 @@ class AddReview extends Component{
                             </form>
                         </div>
                     </div>
+                    <Footer/>
                 </div>
             );
         }

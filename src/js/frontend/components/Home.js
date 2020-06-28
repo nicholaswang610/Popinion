@@ -1,11 +1,21 @@
+/*
+TODO:
+    -ABOUT page, should be purely frontend, style copied from business.com
+    -FOOTER component
+    -ADD GAME page that can send requests to admins' emails
+    -ADMIN PANEL
+    -WRITE A REVIEW link (should be simple enough)
+    -Embellish the home page
+*/
+
 import React, {Component} from 'react';
 import NavbarHome from './NavbarHome.js';
 import gaming from '../../../style/gaming.jpg';
 import movies from '../../../style/movies.jpg';
 import music from '../../../style/music.jpg';
 import books from '../../../style/books.jpg';
-import logo from '../../../style/logo.png';
 import {NavLink} from 'react-router-dom';
+import Footer from './Footer.js';
 
 class Home extends Component{
     render(){
@@ -66,6 +76,7 @@ class Home extends Component{
                         </div>
                     </div>
                 </div>
+                <Footer/>
             </div>
             
             

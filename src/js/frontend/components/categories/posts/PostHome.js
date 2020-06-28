@@ -4,6 +4,7 @@ import {fetchRev} from '../../../actionCreators/postActions';
 import {NavLink} from 'react-router-dom';
 import NavbarHome from '../../NavbarHome.js';
 import Post from './Post.js';
+import Footer from '../../Footer.js';
 
 class PostHome extends Component
 {
@@ -40,7 +41,7 @@ class PostHome extends Component
                 <Post key={review.id} review={review}></Post>
             )});
         return (
-            <div>
+            <div className='post-home-body'>
                 <div className={`${this.state.category}-banner`}>
                     <NavbarHome/>
                 </div>
@@ -62,6 +63,7 @@ class PostHome extends Component
                     </div>
                     <div>{list}</div>
                 </div>
+                <Footer/>
             </div>
         );
     }

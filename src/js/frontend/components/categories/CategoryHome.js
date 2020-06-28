@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import preload from '../../actionCreators/preloadActions.js';
 import NavbarHome from '../NavbarHome.js';
 import {NavLink} from 'react-router-dom';
+import Footer from '../Footer.js';
 
 class CategoryHome extends Component
 {
@@ -41,7 +42,7 @@ class CategoryHome extends Component
         });
 
         return(
-            <div>
+            <div className='category-body'>
                 <div className={`${this.state.category}-banner`}>
                     <NavbarHome/>
                 </div>
@@ -62,7 +63,8 @@ class CategoryHome extends Component
                     </NavLink>
                     {titleList}
                 </div>
-                Icons made by <a href="https://www.flaticon.com/free-icon/add_992651" title="dmitri13">dmitri13</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+                <div style={{marginBottom:"-5em"}}>Icons made by <a href="https://www.flaticon.com/free-icon/add_992651" title="dmitri13">dmitri13</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></div>
+                <Footer/>
             </div>
         );
         

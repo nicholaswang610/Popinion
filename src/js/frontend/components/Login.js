@@ -3,6 +3,7 @@ import woman from '../../../style/woman.jpg'
 import {connect} from 'react-redux';
 import {login} from '../actionCreators/authActions.js';
 import {Redirect} from 'react-router-dom';
+import Footer from './Footer.js';
 
 class Login extends Component{
     state = {
@@ -20,7 +21,7 @@ class Login extends Component{
     }
     render(){
         return(
-            <div className='row mt-5 mx-5'>
+            <div className='login-body row mt-5'>
                 <div className='card py-3 login col-3'>
                     <form onSubmit={e=>{this.handleSubmit(e)}}>
                         <h4 className='text-center mb-3'>Sign in to Welp</h4>
@@ -44,6 +45,7 @@ class Login extends Component{
                 <div className='sign-in-image col-sm'>
                     <img src={woman}></img>
                 </div>
+                <Footer/>
             </div>
         );
     }
