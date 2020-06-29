@@ -383,3 +383,14 @@ input[type='radio']{
     color:red;
     font-weight: 600;
 }
+
+.recent-reviews{
+    display:flex;
+    flex-direction:column;
+}
+
+.recent-post{
+    padding:2em;
+    margin-bottom:1px;
+    outline: 1px solid black;
+}

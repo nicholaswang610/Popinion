@@ -24,9 +24,9 @@ const Footer = (props) => {
                 </div>
                 <div className='company-info'>
                     <div className='footer-header'>Our Company</div>
-                    <NavLink to='/feedback'>About Us</NavLink>
-                    <NavLink to='/feedback'>Our Partners</NavLink>
-                    <NavLink to='/feedback'>Terms of Use</NavLink>
+                    <NavLink to='/about'>About Us</NavLink>
+                    <NavLink to='/partners'>Our Partners</NavLink>
+                    <NavLink to='/terms-of-use'>Terms of Use</NavLink>
                 </div>
             </div>
         </div>

@@ -9,6 +9,11 @@ const preloadReducer = (state=initState, action) =>{
                 ...state,
                 titles: action.titles
             })
+        case 'PRELOAD_RECENT_REVIEWS':
+            return({
+                ...state,
+                titles: action.titles
+            })
         default:
             return state;
     }

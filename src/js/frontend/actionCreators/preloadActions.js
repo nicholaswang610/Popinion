@@ -8,4 +8,13 @@ const preload = (category) =>{
     }
 }
 
-export default preload;
+const preloadRecentReviews = () => {
+    return (dispatch) => {
+        axios.get('http://localhost:5000/recent-reviews').then(response=>{
+            console.log(response.data);
+            dispatch({type: 'PRELOAD_RECENT_REVIEWS', titles: response.data})
+        });
+    }
+}
+
+export {preload as default, preloadRecentReviews};

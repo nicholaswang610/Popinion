@@ -101,4 +101,16 @@ app.post('/add-review', authenticateToken, (req,res) => {
 
 });
 
+app.get('/recent-reviews', (req,res) => {
+    database.query('SELECT * FROM gaming ORDER BY time_created DESC LIMIT 6', (err, result)=>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log(result);
+            res.send(result);
+        }
+    })
+})
+
 app.listen(PORT, () => {console.log('server started on port ' + PORT)});
