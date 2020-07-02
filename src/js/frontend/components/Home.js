@@ -18,7 +18,7 @@ import books from '../../../style/books.jpg';
 import {NavLink} from 'react-router-dom';
 import Footer from './Footer.js';
 import {preloadRecentReviews} from '../actionCreators/preloadActions.js';
-import Post from './categories/posts/Post.js';
+import RecentPost from './categories/posts/RecentPost.js';
 
 class Home extends Component{
     componentDidMount(){
@@ -26,9 +26,7 @@ class Home extends Component{
     }
     render(){
         const recentReviews = this.props.recentReviews.map(review=>{
-            return(
-                <div className='recent-post' key={review.id}>{review.review_title}</div>
-            )
+            return(<RecentPost key={review.id} review={review}/>)
         })
         return(
             <div className='home-body'>
@@ -87,8 +85,8 @@ class Home extends Component{
                         </div>
                     </div>
                 </div>
-                <div className='recent-reviews container text-center mt-5'>
-                    <h3 style={{color:'red', fontWeight:'600'}}>Recent Activity</h3>
+                <h3 style={{color:'red', fontWeight:'600'}} className='mt-5 text-center'>Recent Activity</h3>
+                <div className='recent-reviews container'>
                     {recentReviews}
                 </div>
                 <Footer/>

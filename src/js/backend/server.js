@@ -102,7 +102,7 @@ app.post('/add-review', authenticateToken, (req,res) => {
 });
 
 app.get('/recent-reviews', (req,res) => {
-    database.query('SELECT * FROM gaming ORDER BY time_created DESC LIMIT 6', (err, result)=>{
+    database.query('SELECT * FROM (SELECT * FROM gaming UNION SELECT * FROM movies) AS test ORDER BY time_created DESC LIMIT 6', (err, result)=>{
         if(err){
             console.log(err);
         }

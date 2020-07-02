@@ -386,11 +386,21 @@ input[type='radio']{
 
 .recent-reviews{
     display:flex;
-    flex-direction:column;
+    flex-wrap: wrap;
+
+}
+.recent-post{
+    position:relative;
+    margin: 1em;
+    width:30%;
+    height:300px;
+    padding:2em;
+    text-align:center;
+    text-align:left;
+    text-align-last:left;
 }
 
-.recent-post{
-    padding:2em;
-    margin-bottom:1px;
-    outline: 1px solid black;
+.recent-post-content{
+    overflow-y:auto;
+    overflow-x:hidden;
 }
