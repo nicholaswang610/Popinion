@@ -1,11 +1,12 @@
 /*
 TODO:
     -ABOUT page, should be purely frontend, style copied from business.com
+    -BANNERS for each category
     -FOOTER component
-    -ADD GAME page that can send requests to admins' emails
     -ADMIN PANEL
     -WRITE A REVIEW link (should be simple enough)
     -Embellish the home page
+    -working search bar
 */
 
 import React, {Component} from 'react';
@@ -33,9 +34,7 @@ class Home extends Component{
                 <div className="banner">
                     <NavbarHome/>
                     <div className='logo'></div>
-                    <form className='input-group'>
-                        <input className='search' type='search' placeholder='Search for something...'></input>
-                    </form>
+                    <div className='slogan'></div>
                 </div>
                 <div className='container text-center'>
                     <h3 className='home-title' style={{color:'red', fontWeight:'600'}}>Find an Opinion...</h3>

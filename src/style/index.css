@@ -17,6 +17,13 @@ body, #root{
     background-color:#FDFDFD;
 }
 
+.add-body{
+    position:relative;
+    min-height:100%;
+    padding-bottom:275px;
+    background-color:gray;
+}
+
 .category-body, .post-home-body, .login-body{
     position:relative;
     min-height:100%;
@@ -51,6 +58,16 @@ body, #root{
     background-position-y:4em;
     margin:0 auto;
 }
+
+.slogan{
+    position:relative;
+    background-image:url('./slogan.png');
+    height:100px;
+    background-repeat:no-repeat;
+    background-size:25em;
+    background-position-x:51%;
+}
+
 .nav-item{
     margin: 0 1em;
 }
@@ -194,28 +211,6 @@ a,a:link,a:visited,a:hover,a:active{
     color:black;
 }
 
-.input-group{
-    position:relative;
-}
-
-.search{
-    display:inline-block;
-    margin: 0 auto;
-    width:700px;
-    border:none;
-    outline:none;
-    border-radius:5px;
-    line-height:2.3em;
-    padding-left:1em;
-    padding-right:1em;
-
-}
-
-.search:focus{
-    border:none;
-    outline:none;
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.45);
-}
 
 .title-container{
     position:relative;

@@ -101,6 +101,20 @@ app.post('/add-review', authenticateToken, (req,res) => {
 
 });
 
+app.post('/add-title', authenticateToken, (req,res) => {
+    database.query('INSERT INTO suggestions SET ?', {
+        category: req.body.data.category,
+        title: req.body.data.title,
+        publisher: req.body.data.publisher,
+        genre: req.body.data.genre,
+        release_year: req.body.data.releaseYear
+    }, (err,result) =>{
+        if(err){
+            console.log(err)
+        }
+    });
+})
+
 app.get('/recent-reviews', (req,res) => {
     database.query('SELECT * FROM (SELECT * FROM gaming UNION SELECT * FROM movies) AS test ORDER BY time_created DESC LIMIT 6', (err, result)=>{
         if(err){

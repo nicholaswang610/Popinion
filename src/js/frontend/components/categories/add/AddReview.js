@@ -73,7 +73,7 @@ class AddReview extends Component{
         }
         else{
             return(
-                <div style={{backgroundColor:'gray', height:"100%"}}>
+                <div className='add-body'>
                     <div className={`${this.state.category}-banner`}>
                         <NavbarHome/>
                     </div>

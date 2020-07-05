@@ -21,4 +21,17 @@ const post = (reviewPayload) => {
     }
 }
 
-export {fetchRev, post};
+const addTitle = (titlePayload) => {
+    return (dispatch) => {
+        const authStr = 'Bearer ' + localStorage.getItem('jwt');
+        axios.post('http://localhost:5000/add-title', {
+            headers: {Authorization: authStr},
+            data: titlePayload
+        })
+        .then(response=>{
+            dispatch({type:response.data.auth});
+        })
+    }
+}
+
+export {fetchRev, post, addTitle};
