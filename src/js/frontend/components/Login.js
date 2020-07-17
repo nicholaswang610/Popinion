@@ -19,6 +19,9 @@ class Login extends Component{
         e.preventDefault();
         this.props.logIn(this.state);
     }
+    cancel = e => {
+        this.props.history.goBack();
+    }
     render(){
         return(
             <div className='login-body row mt-5'>
@@ -35,6 +38,7 @@ class Login extends Component{
                         </div>
                         <div className='form-group'>
                             <input type='submit' value="Log in" className='btn btn-dark'></input>
+                            <button className='btn btn-outline-dark mr-3 ml-3' onClick={e=>{this.cancel(e)}}>Go back</button>
                         </div>
                         <div>
                             {this.props.loginError ? (<div className="alert alert-danger">{this.props.loginError}</div>) : null}

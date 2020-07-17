@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {signup} from '../actionCreators/authActions.js';
+import {Redirect} from 'react-router-dom';
 
 class Signup extends Component{
     constructor(props){
@@ -31,7 +32,14 @@ class Signup extends Component{
         this.props.signUp(this.state);
     }
 
+    cancel = e => {
+        this.props.history.goBack();
+    }
+
     render(){
+        if(this.state.cancel){
+            return(<Redirect to="/"></Redirect>);
+        }
         return(
             <div className='row mt-5 mx-5'>
                 <div className='card py-3 sign-up col'>
@@ -63,6 +71,7 @@ class Signup extends Component{
                         </div>
                         <div className='form-group'>
                             <input type='submit' value="Sign up" className='btn btn-dark'></input>
+                            <button className='btn btn-outline-dark mr-3 ml-3' onClick={e=>{this.cancel(e)}}>Go back</button>
                         </div>
                     </form>
                 </div>

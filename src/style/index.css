@@ -24,7 +24,7 @@ body, #root{
     background-color:gray;
 }
 
-.category-body, .post-home-body, .login-body{
+.category-body, .post-home-body, .login-body, .about-body{
     position:relative;
     min-height:100%;
     padding-bottom:300px;
@@ -66,6 +66,15 @@ body, #root{
     background-repeat:no-repeat;
     background-size:25em;
     background-position-x:51%;
+}
+
+.about-us-img{
+    position:relative;
+    background-image:url('./aboutus.png');
+    height:100px;
+    background-repeat:no-repeat;
+    background-size:25em;
+    background-position-x:50%;
 }
 
 .nav-item{
@@ -238,6 +247,14 @@ a,a:link,a:visited,a:hover,a:active{
     top:55%;
     object-fit:contain;
 }
+
+.about-banner{
+    background-image: url('./collaboration.jpg');
+    background-repeat: no-repeat;
+    background-position-y:38%;
+    height:350px;
+}
+
 .gaming-banner{
     background-image: url('./gamingbackground.jpg');
     background-repeat: no-repeat;
@@ -398,4 +415,15 @@ input[type='radio']{
 .recent-post-content{
     overflow-y:auto;
     overflow-x:hidden;
+}
+
+.grimmauld{
+    background-image: url('./grimmauld.jpg');
+    background-repeat: no-repeat;
+    background-position-y:38%;
+    height:350px;
+    width:25%;
+    margin-left:13em;
+    margin-top: -3em;
+    background-size: 25em;
 }

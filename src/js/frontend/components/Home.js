@@ -2,11 +2,8 @@
 TODO:
     -ABOUT page, should be purely frontend, style copied from business.com
     -BANNERS for each category
-    -FOOTER component
-    -ADMIN PANEL
     -WRITE A REVIEW link (should be simple enough)
-    -Embellish the home page
-    -working search bar
+    -Notifications widget
 */
 
 import React, {Component} from 'react';

@@ -3,6 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Home from './Home.js';
 import Login from './Login.js';
 import Signup from './Signup.js';
+import About from './About.js';
 import CategoryHome from './categories/CategoryHome.js';
 import PostHome from './categories/posts/PostHome.js';
 import AddTitle from './categories/add/AddTitle.js';
@@ -14,6 +15,7 @@ class App extends Component{
             <BrowserRouter>
                 <Switch>
                     <Route exact path='/' component={Home}/>
+                    <Route exact path='/about' component={About}/>
                     <Route exact path='/login' component={Login}/>
                     <Route exact path='/signup' component={Signup}/>
                     <Route exact path='/gaming' component={CategoryHome}/>
