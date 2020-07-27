@@ -19,6 +19,9 @@ import {preloadRecentReviews} from '../actionCreators/preloadActions.js';
 import RecentPost from './categories/posts/RecentPost.js';
 
 class Home extends Component{
+    constructor(props){
+        super(props);
+    }
     componentDidMount(){
         this.props.getRecentReviews();
     }
@@ -34,7 +37,7 @@ class Home extends Component{
                     <div className='slogan'></div>
                 </div>
                 <div className='container text-center'>
-                    <h3 className='home-title' style={{color:'red', fontWeight:'600'}}>Find an Opinion...</h3>
+                    <h3 className='home-title' style={{color:'red', fontWeight:'600'}}>Find an opinion, or share your own:</h3>
                     <div className='row'>
                         <div className='col'>
                             <div className='card category'>

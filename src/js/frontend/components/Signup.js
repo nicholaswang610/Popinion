@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {signup} from '../actionCreators/authActions.js';
-import {Redirect} from 'react-router-dom';
-
+import {Redirect} from 'react-router-dom'; 
+import Footer from './Footer.js';
 class Signup extends Component{
     constructor(props){
         super(props);
@@ -41,7 +41,7 @@ class Signup extends Component{
             return(<Redirect to="/"></Redirect>);
         }
         return(
-            <div className='row mt-5 mx-5'>
+            <div className='signup-body row mt-5 mx-5'>
                 <div className='card py-3 sign-up col'>
                     <form onSubmit={e=>{this.handleSubmit(e)}}>
                         <h4 className='text-center mb-3'>Create an account</h4>
@@ -75,6 +75,7 @@ class Signup extends Component{
                         </div>
                     </form>
                 </div>
+                <Footer/>
             </div>
         );
     }

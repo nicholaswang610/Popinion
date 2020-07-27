@@ -2,12 +2,19 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 
+const scrollToCategory = () =>{
+    window.scrollTo(0, 628);
+}
+
 const SignedIn = (props) =>{
     return(
         <div className='navbar-collapse signed-in'>
             <ul className='navbar-nav text-white'>
                 <li className='nav-item'>
-                    <NavLink className='nav-link text-white' exact to='/choose-category'>Write a Review</NavLink>
+                    <NavLink className='nav-link text-white' exact to='/'>Home</NavLink>
+                </li>
+                <li className='nav-item'>
+                <button className='nav-link text-white'>Write a Review</button>
                 </li>
                 <li className='nav-item'>
                     <NavLink className='nav-link text-white' exact to='/about'>About</NavLink>

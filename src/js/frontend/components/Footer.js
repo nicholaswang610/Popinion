@@ -17,6 +17,7 @@ const Footer = (props) => {
             <div className='footer-links'>
                 <div className='resources'>
                     <div className='footer-header'>Resources</div>
+                    <NavLink to='/'>Home</NavLink>
                     <NavLink to='/choose-category'>Reviews</NavLink>
                     <NavLink to='/faq'>FAQ</NavLink>
                     <NavLink to='/choose-category'>Suggest a Title</NavLink>
@@ -31,7 +32,6 @@ const Footer = (props) => {
             </div>
         </div>
     );
-    
 }
 
 export default Footer;
