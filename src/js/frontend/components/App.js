@@ -8,6 +8,7 @@ import CategoryHome from './categories/CategoryHome.js';
 import PostHome from './categories/posts/PostHome.js';
 import AddTitle from './categories/add/AddTitle.js';
 import AddReview from './categories/add/AddReview.js';
+import ChooseCategory from './categories/ChooseCategory.js';
 
 class App extends Component{
     render(){
@@ -24,10 +25,17 @@ class App extends Component{
                     <Route exact path='/books' component={CategoryHome}/>
                     <Route exact path='/gaming/add-title' component={AddTitle}/>
                     <Route exact path='/movies/add-title' component={AddTitle}/>
+                    <Route exact path='/music/add-title' component={AddTitle}/>
+                    <Route exact path='/books/add-title' component={AddTitle}/>
                     <Route exact path='/gaming/:title' component={PostHome}/>
                     <Route exact path='/movies/:title' component={PostHome}/>
+                    <Route exact path='/music/:title' component={PostHome}/>
+                    <Route exact path='/books/:title' component={PostHome}/>
                     <Route exact path='/gaming/:title/add-review' component={AddReview}/>
                     <Route exact path='/movies/:title/add-review' component={AddReview}/>
+                    <Route exact path='/music/:title/add-review' component={AddReview}/>
+                    <Route exact path='/books/:title/add-review' component={AddReview}/>
+                    <Route exact path='/choose-category' component={ChooseCategory}/>
                 </Switch>
             </BrowserRouter>
         )

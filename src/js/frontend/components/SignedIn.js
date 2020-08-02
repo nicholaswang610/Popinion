@@ -14,7 +14,7 @@ const SignedIn = (props) =>{
                     <NavLink className='nav-link text-white' exact to='/'>Home</NavLink>
                 </li>
                 <li className='nav-item'>
-                <button className='nav-link text-white'>Write a Review</button>
+                    <button className='nav-link text-white write-review-button' onClick={e=>{scrollToCategory()}}>Write a Review</button>
                 </li>
                 <li className='nav-item'>
                     <NavLink className='nav-link text-white' exact to='/about'>About</NavLink>
