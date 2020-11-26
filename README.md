@@ -1,8 +1,8 @@
-# review-it
+# Popinion
 A web app (MERN) for posting reviews and ratings on gaming, music, book, and film products.
 
-# Demonstration
-To run it, you can pull and type "npm start" in the terminal rooted at the /review-it directory.  However, a lot of the images and data won't display since it's stored on a local mySQL server.  Also -- this repo contains a lot of images!
+# Overview
+If you'd like, the app can be run by typing "npm start" at the root directory (./review-it).  However, a lot of data will be missing since it's stored on a local mySQL server.  Instead, a couple screenshots from the web app can be found below.
 
-
-![Image of landing page](https://github.com/nicholaswang610/review-it/tree/master/readmefiles/home-screenshot.png?raw=true)
+#Landing Page
+![home-screenshot](https://user-images.githubusercontent.com/21328729/100299990-e372c600-2f49-11eb-9f3e-05fd5f005da1.png)
